@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:registration/forgot.dart';
+import 'package:registration/service.dart';
 import 'package:registration/signup.dart';
 import 'package:registration/welcome.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+  
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController emailcontroller=TextEditingController();
+  TextEditingController passwordcontroller=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +47,7 @@ class Login extends StatelessWidget {
 
               Align(alignment: Alignment.topLeft, child: Text("EMAIL")),
               SizedBox(height: 10),
-              TextField(
+              TextField(controller: emailcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
                   filled: true,
@@ -52,7 +61,7 @@ class Login extends StatelessWidget {
 
               Align(alignment: Alignment.topLeft, child: Text("PASSWORD")),
               SizedBox(height: 10),
-              TextField(
+              TextField(controller: passwordcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
                   filled: true,
@@ -90,10 +99,8 @@ class Login extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Welcome()),
-                    );
+                    login(emailcontroller.text, passwordcontroller.text, context);
+            
                   },
                   child: Text(
                     "Login",

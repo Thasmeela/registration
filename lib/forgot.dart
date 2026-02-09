@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:registration/login.dart';
+import 'package:registration/service.dart';
 
-class forgotpassword extends StatelessWidget {
+class forgotpassword extends StatefulWidget {
   const forgotpassword({super.key});
 
   @override
+  State<forgotpassword> createState() => _forgotpasswordState();
+
+}
+
+class _forgotpasswordState extends State<forgotpassword> {
+  TextEditingController emailcontroller=TextEditingController();
+  TextEditingController passwordcontroller=TextEditingController();
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -36,7 +46,7 @@ class forgotpassword extends StatelessWidget {
 
               Align(alignment: Alignment.topLeft, child: Text("EMAIL")),
               SizedBox(height: 10),
-              TextField(
+              TextField(controller: emailcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
                   filled: true,
@@ -58,7 +68,9 @@ class forgotpassword extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  forgot(emailcontroller.text, passwordcontroller.text ,context);
+                },
                 child: Text(
                   "Send Password",
                   style: TextStyle(
