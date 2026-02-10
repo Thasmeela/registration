@@ -15,6 +15,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController emailcontroller=TextEditingController();
   TextEditingController passwordcontroller=TextEditingController();
+  bool visible = true; 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,10 +62,16 @@ class _LoginState extends State<Login> {
 
               Align(alignment: Alignment.topLeft, child: Text("PASSWORD")),
               SizedBox(height: 10),
-              TextField(controller: passwordcontroller,
+              TextField(
+                obscureText: visible,
+                controller: passwordcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
-                  filled: true,
+                  filled: true,suffixIcon: IconButton(onPressed: () {
+                    setState(() {
+                       visible = !visible;
+                    });
+                  }, icon: visible? Icon(Icons.visibility_off):Icon(Icons.visibility)),
                   labelStyle: TextStyle(color: Colors.black),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),

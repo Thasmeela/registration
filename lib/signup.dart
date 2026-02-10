@@ -18,6 +18,7 @@ class _SignupState extends State<Signup> {
   TextEditingController confirm_passwordcontroller=TextEditingController();
 
   @override
+   bool visible = true;
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -77,10 +78,16 @@ class _SignupState extends State<Signup> {
 
               Align(alignment: Alignment.topLeft, child: Text("PASSWORD")),
               SizedBox(height: 10),
-              TextField(controller: passwordcontroller,
+              TextField(obscureText: visible,
+              controller: passwordcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
-                  filled: true,
+                  filled: true,suffixIcon: IconButton(onPressed: () {
+                    setState(() {
+                       visible = !visible;
+                    });
+                  }, icon: visible? Icon(Icons.visibility_off):Icon(Icons.visibility)),
+
                   labelStyle: TextStyle(color: Colors.black),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -94,10 +101,16 @@ class _SignupState extends State<Signup> {
                 child: Text("CONFIRM PASSWORD  "),
               ),
               SizedBox(height: 10),
-              TextField(controller: confirm_passwordcontroller,
+              TextField(obscureText: visible,
+              controller: confirm_passwordcontroller,
                 decoration: InputDecoration(
                   fillColor: const Color.fromARGB(255, 218, 213, 213),
-                  filled: true,
+                  filled: true,suffixIcon: IconButton(onPressed: () {
+                    setState(() {
+                       visible = !visible;
+                    });
+                  }, icon: visible? Icon(Icons.visibility_off):Icon(Icons.visibility)),
+
                   labelStyle: TextStyle(color: Colors.black),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
